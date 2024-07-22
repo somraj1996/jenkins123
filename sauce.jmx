@@ -47,16 +47,16 @@
       </CookieManager>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
-        <stringProp name="ThreadGroup.num_threads">3</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(usersc,2)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${__P(rampupc,10)}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">3</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${__P(tduration,30)}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
@@ -500,7 +500,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
+        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
           <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="graphiteMetricsSender" elementType="Argument">
@@ -719,6 +719,119 @@
           </objProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
+        <hashTree/>
+        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
+          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="es.scheme" elementType="Argument">
+                <stringProp name="Argument.name">es.scheme</stringProp>
+                <stringProp name="Argument.value">http</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.host" elementType="Argument">
+                <stringProp name="Argument.name">es.host</stringProp>
+                <stringProp name="Argument.value">172.200.184.192</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.port" elementType="Argument">
+                <stringProp name="Argument.name">es.port</stringProp>
+                <stringProp name="Argument.value">9200</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.index" elementType="Argument">
+                <stringProp name="Argument.name">es.index</stringProp>
+                <stringProp name="Argument.value">JmeterSomrajTwo</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.timestamp" elementType="Argument">
+                <stringProp name="Argument.name">es.timestamp</stringProp>
+                <stringProp name="Argument.value">yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSZZ</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.bulk.size" elementType="Argument">
+                <stringProp name="Argument.name">es.bulk.size</stringProp>
+                <stringProp name="Argument.value">100</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.timout.ms" elementType="Argument">
+                <stringProp name="Argument.name">es.timout.ms</stringProp>
+                <stringProp name="Argument.value">200</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.sample.filter" elementType="Argument">
+                <stringProp name="Argument.name">es.sample.filter</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.fields" elementType="Argument">
+                <stringProp name="Argument.name">es.fields</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.test.mode" elementType="Argument">
+                <stringProp name="Argument.name">es.test.mode</stringProp>
+                <stringProp name="Argument.value">info</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.xpack.user" elementType="Argument">
+                <stringProp name="Argument.name">es.xpack.user</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.xpack.password" elementType="Argument">
+                <stringProp name="Argument.name">es.xpack.password</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.parse.all.req.headers" elementType="Argument">
+                <stringProp name="Argument.name">es.parse.all.req.headers</stringProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.parse.all.res.headers" elementType="Argument">
+                <stringProp name="Argument.name">es.parse.all.res.headers</stringProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.aws.endpoint" elementType="Argument">
+                <stringProp name="Argument.name">es.aws.endpoint</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.aws.region" elementType="Argument">
+                <stringProp name="Argument.name">es.aws.region</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.ssl.truststore.path" elementType="Argument">
+                <stringProp name="Argument.name">es.ssl.truststore.path</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.ssl.truststore.pw" elementType="Argument">
+                <stringProp name="Argument.name">es.ssl.truststore.pw</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.ssl.keystore.path" elementType="Argument">
+                <stringProp name="Argument.name">es.ssl.keystore.path</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.ssl.keystore.pw" elementType="Argument">
+                <stringProp name="Argument.name">es.ssl.keystore.pw</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="es.ssl.verificationMode" elementType="Argument">
+                <stringProp name="Argument.name">es.ssl.verificationMode</stringProp>
+                <stringProp name="Argument.value">full</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="classname">io.github.delirius325.jmeter.backendlistener.elasticsearch.ElasticsearchBackendClient</stringProp>
+        </BackendListener>
         <hashTree/>
       </hashTree>
     </hashTree>
